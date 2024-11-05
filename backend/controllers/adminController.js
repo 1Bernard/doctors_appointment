@@ -13,7 +13,7 @@ const addDoctor = async (req, res) => {
 
     // checking for all data available before adding to doctor model
     if (!name || !email || !password || !speciality || !degree || !experience || !about || !fees || !address) {
-      return res.json({sucess:false, message: "Missing Details"})
+      return res.json({success:false, message: "Missing Details"})
     }
 
     // validating email format
