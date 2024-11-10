@@ -4,6 +4,7 @@ import userModel from '../models/userModel.js'
 import jwt from 'jsonwebtoken'
 import {v2 as cloudinary} from 'cloudinary'
 import doctorModel from '../models/doctorModel.js'
+import appointmentModel from '../models/appointmentModel.js'
 
 // API to register user
 const registerUser = async (req, res) => {
@@ -110,7 +111,7 @@ const updateProfile = async (req, res) => {
 }
 
 // API to book appointment
-const bookAppointment = async () => {
+const bookAppointment = async (req, res) => {
   try {
     const { userId, docId, slotDate, slotTime } = req.body
     const docData = await doctorModel.findById(docId).select('-password')
@@ -143,8 +144,8 @@ const bookAppointment = async () => {
       userData,
       docData,
       amount: docData.fees,
-      slotDate,
       slotTime,
+      slotDate,
       date: Date.now()
     }
 
